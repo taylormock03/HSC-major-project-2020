@@ -112,7 +112,7 @@ export class ServiceService {
   //Roster scripts
 
   
-  createRoster(values){
+  createRoster(values):void{
     var userNum=0;
   for(let x of values){
     userNum++
@@ -246,9 +246,12 @@ export class ServiceService {
  let roster = JSON.parse(localStorage.getItem('Roster'));
     roster.push(Roster);
     localStorage.setItem('roster', JSON.stringify(Roster));
-  
   //end function
   }
 
+  getRoster() {
+    let roster = JSON.parse(localStorage.getItem('roster'));
+    return roster;
+  }
   //end ServiceService
 }

@@ -1,6 +1,11 @@
-<p>
-admin-roster works!
-</p>
+<mat-list-item *ngFor="let item of roster; let i=index" >
+      <table>
+         <td> {{item.date}}  </td> 
+         <td> {{item.crucifer}}</td>
+         <td> {{item.acolyte1}}</td>
+         <td> {{item.acolyte2}}</td>
+      </table>
+</mat-list-item>
 
 <button class="red"  mat-raised-button (click) = createRoster()>Create Roster</button>
 
