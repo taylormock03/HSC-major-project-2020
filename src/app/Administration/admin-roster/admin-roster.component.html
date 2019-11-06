@@ -1,11 +1,21 @@
-<mat-list-item *ngFor="let item of roster; let i=index" >
+
       <table>
-         <td> {{item.date}}  </td> 
+        <tr  *ngFor="let item of roster; let i=index">
+         <td> {{item.date}}</td> 
          <td> {{item.crucifer}}</td>
          <td> {{item.acolyte1}}</td>
          <td> {{item.acolyte2}}</td>
-      </table>
-</mat-list-item>
+        </tr>
 
-<button class="red"  mat-raised-button (click) = createRoster()>Create Roster</button>
+      </table>
+      <strong> Test 12</strong>
+      
+      <br>
+<button mat-raised-button (click) = createRoster()>Create Roster</button>
+<br><br><br>
+
+
+
+
+
 
