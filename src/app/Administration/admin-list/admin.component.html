@@ -1,0 +1,25 @@
+<mat-card>
+  <div class="adminlistbody">
+
+<!--Lists all names in the database-->
+<h1>Admin List</h1>
+    
+
+        
+  <mat-list-item *ngFor="let item of people; let i=index" >
+      <mat-divider></mat-divider><br>
+          <strong>Name:</strong>  {{item.fName}} {{item.lName}}   <br> 
+          <strong>Password:</strong>    {{item.password}}   <br>
+          <strong>Email:</strong>    {{item.cDetails}}   <br>
+          <strong>Level:</strong>    {{item.level}}   <br>
+          <strong>Approved:</strong>    {{item.approved}}   <br><br>
+      <div class="listbuttons">          
+      <button mat-button mat-raised-button color="accent" [routerLink]="['/aedit', i]">edit  </button>
+      <button mat-button mat-raised-button color="warn"  (click) = openDialog(i) > delete  </button> <br><br>
+        <mat-divider ></mat-divider>
+    </div>
+        
+  </mat-list-item>
+
+  </div>
+</mat-card>

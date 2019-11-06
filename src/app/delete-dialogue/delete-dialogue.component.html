@@ -1,0 +1,14 @@
+<section class="container">
+  <h1>Delete</h1>
+Are you sure you want to delete "{{displayName}} " ?
+        <!--CLOSE--> 
+        <br>
+    <div class="dialogbuttons">
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="close()">Close</button>
+
+         <button mat-raised-button (click)="delete(id);close()" color="warn" >Yes</button >
+    </mat-dialog-actions>
+    </div>
+
+</section>

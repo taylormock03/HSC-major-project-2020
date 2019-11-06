@@ -1,0 +1,33 @@
+ .errorMessage{
+  background-color: rgb(207, 32, 32);
+    margin: 5px 5px 5px 5px ;
+    color:white;
+ }
+
+ .mat-form-field{
+   width:80%;
+ }
+ .mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+.register-but{
+  margin-top:25px;
+  margin-left:20px;
+}
+strong{
+  width:100%;
+  padding-bottom: 15px;
+}
+mat-checkbox{
+  width: 40%;
+  padding-bottom: 15px;
+}
+mat-card{
+  width:80%;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

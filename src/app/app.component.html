@@ -1,0 +1,72 @@
+<section>
+	<!--======= TOP NAV BAR =======-->
+	<mat-toolbar color="primary" class="topBar">
+		<!--<div fxHide.gt-xs> -->
+			<button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+			<!--</div> -->
+			<div fxFlex> </div>
+			<div  fxFlex>
+St Peter's Cremorne
+			</div>
+			<div fxFlex > </div>
+  </mat-toolbar>
+	<!-- end top nav bar-->
+
+  <!--======= SIDE BAR and MAIN PAGE CONTENT =======-->
+	<mat-sidenav-container hasBackdrop="true">
+  	<!----------SIDE BAR----------->
+		<mat-sidenav #snav mode="'over'" [fixedInViewport]="true">
+			<!--MENU ITEMS -->
+			<mat-nav-list>
+				<mat-list-item routerLink="/home" (click)="close()">
+					<mat-icon matListIcon>home</mat-icon>
+					Home
+				</mat-list-item>
+ 
+        <mat-list-item routerLink="/register" (click)="close()">
+					<mat-icon matListIcon>edit</mat-icon>
+					Registration
+				</mat-list-item>
+
+        <mat-list-item routerLink="/availability" (click)="close()">
+					<mat-icon matListIcon>edit</mat-icon>
+					Edit Availabilities
+				</mat-list-item>
+
+       <mat-list-item routerLink="/roster" (click)="close()">
+					<mat-icon matListIcon>date_range</mat-icon>
+					Roster
+				</mat-list-item> 
+
+        <mat-list-item routerLink="/aLogin" (click)="close()">
+					<mat-icon matListIcon>build</mat-icon>
+					Admin
+				</mat-list-item>
+ 
+				<mat-list-item (click)="snav.close()">
+					<mat-icon matListIcon>cancel</mat-icon>
+					Close
+				</mat-list-item>
+			</mat-nav-list>
+		</mat-sidenav>
+	  <!-- end side bar-->
+
+	  <!----------main page content - ROUTER----------->
+		<mat-sidenav-content>
+			<router-outlet>
+        </router-outlet>
+		</mat-sidenav-content>
+    
+    <!-- end main page content-->
+	</mat-sidenav-container>
+	<!--========FOOTER=======-->
+	<mat-toolbar color="primary" class="footer">
+			<div class="footerMenu">
+				For help, please call - 1900 654 321
+			</div>
+	</mat-toolbar>
+	<!-- end footer-->
+
+<section>

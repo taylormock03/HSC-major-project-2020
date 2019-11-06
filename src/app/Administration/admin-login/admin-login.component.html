@@ -1,0 +1,24 @@
+<mat-card>
+  <div class="loginbody">
+    <h1>Admin</h1>
+    
+          <!-- Login Info -- Will receive from Database -->
+          <div class="error"> {{errorMessage}} </div>
+        
+        <form flex [formGroup]="LoginForm" (ngSubmit)="submit()">
+         
+            <mat-form-field>
+              <input matInput placeholder="Firstname" name="Login_Username"  formControlName="Login_Username">
+            </mat-form-field>
+            <br>
+
+            <mat-form-field>
+              <input matInput type="password" placeholder="Password" name="Login_Password"  formControlName="Login_Password">
+            </mat-form-field>
+            <br> <br>
+       
+              <button mat-raised-button color="primary"  >Login</button>
+
+      </form>
+  </div>
+</mat-card>

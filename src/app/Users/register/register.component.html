@@ -1,0 +1,51 @@
+<div class="container">
+  <mat-card>
+  <div class="errorMesage"> <!--Double curly brackets link angular with html --> {{errorMessage}} </div>
+  
+    <form [formGroup]="peopleForm" (ngSubmit)="submit()">
+      <div fxFlex fxLayout="row wrap" fxLayoutGap="20px">
+
+          <mat-form-field>
+            <input matInput placeholder="First name" formControlName="fName">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Last name" formControlName="lName">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput type="password" placeholder="Account Password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Contact details (Phone number or email)" formControlName="cDetails">
+          </mat-form-field>
+
+          <mat-form-field>
+            How many weeks would you like to be rostered each month?
+            <input matInput formControlName="freq">
+          </mat-form-field>
+
+           <br>
+          <strong>Please check the roles you wish to do</strong>
+          <mat-checkbox formControlName="crucifer" value=true> Crucifer</mat-checkbox>
+          <mat-checkbox formControlName="senSer" value=true> Senior server</mat-checkbox>
+          <mat-checkbox formControlName="acolyte" value=true> Acolyte</mat-checkbox>
+          <mat-checkbox formControlName="sidesperson" value=true> Sidesperson</mat-checkbox>
+          <mat-checkbox formControlName="welcomer" value=true> Welcomer</mat-checkbox>
+          <mat-checkbox formControlName="chalice" value=true> Chalice bearer</mat-checkbox>
+          <mat-checkbox formControlName="reader" value=true> Reader</mat-checkbox>
+          <mat-checkbox formControlName="intercessor" value=true> intercessor</mat-checkbox>
+
+
+        <div fxFlex class="register-but">
+          <button   mat-raised-button color="primary">submit</button>
+        </div>
+
+        </div>
+
+  </form>
+    <!-- this is here to show the dynamic addition of the data being entered -->
+  </mat-card>
+</div>
+<br> {{ peopleForm.value | json }} 
