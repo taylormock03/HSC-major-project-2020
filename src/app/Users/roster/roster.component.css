@@ -1,0 +1,7 @@
+h1{
+  text-align:center;
+}
+table,td,th{
+  border-style: solid;
+  border-collapse: collapse;
+}
