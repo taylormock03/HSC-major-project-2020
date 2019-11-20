@@ -1,3 +1,38 @@
-<p>
-roster works!
-</p>
+<h1>Roster</h1>
+
+<table>
+<tr>
+  <th>Date</th>
+  <th>Sides person1</th>
+  <th>Sides person 2</th>
+  <th>Reader 1</th>
+  <th>Reader 2</th>
+  <th>Intercessor</th>
+  <th>Senior server</th>
+  <th>Crucifer</th>
+  <th>Acolyte 1</th>
+  <th>Acolyte 2</th>
+  <th>Intercessor</th>
+  <th>Chalice</th>
+  <th>Chalice</th>
+  <th>Thurifer</th>
+</tr>
+<tr *ngFor="let week of roster">
+  <td>{{week.date}}</td>
+  <td>{{week.sidesperson1}}</td>
+  <td>{{week.sidesperson2}}</td>
+  <td>{{week.reader1}}</td>
+  <td>{{week.reader2}}</td>
+  <td>{{week.intercessor}}</td>
+  <td>{{week.senSer}}</td>
+  <td>{{week.crucifer}}</td>
+  <td>{{week.acolyte1}}</td>
+  <td>{{week.acolyte2}}</td>
+  <td>{{week.chalice}}</td>
+  <td>{{week.senSer}}</td>
+  <td>{{week.thurifer}}</td>
+
+</tr>
+
+</table>
+<br

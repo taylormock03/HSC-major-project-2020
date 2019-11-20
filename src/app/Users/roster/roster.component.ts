@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceService } from '../.././service.service';
+
 
 @Component({
   selector: 'app-roster',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RosterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ps: ServiceService) { }
+
+  roster:any;
 
   ngOnInit() {
+    this.roster=this.ps.getRoster()
   }
 
 }
