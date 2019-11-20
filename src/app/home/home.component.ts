@@ -19,10 +19,11 @@ export class HomeComponent  {
   week:any;
 
   ngOnInit(){
-    this.roster = this.ps.getRoster
+    this.roster = this.ps.getRoster()
+    console.log(this.roster)
     this.date=this.getDate();
     this.week=this.getWeekNumber(new Date);
-    console.log(this.date,this.week)
+    this.display();
 
   }
   getDate(){
@@ -50,5 +51,8 @@ export class HomeComponent  {
     // Return array of year and week number
     return weekNo;
 }
+  display(){
+    document.getElementById("week").innerHTML = this.date;
+  }
 
   }

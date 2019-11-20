@@ -2,19 +2,74 @@
 
 <h1>St Peter's Anglican Church Cremorne</h1>
 <div class="box">
-     <h2>This week's <b>10/03/06</b> rosters are</h2>
+     <h2>This week's <b id="week"></b> rosters are</h2>
      <table border="1">
-       <th>Person</th>
-       <th> Role </th>
+       <th>Role</th>
+       <th> Person </th>
 
-       <tr>
-         <td>Hi</td>
-         <td>There</td>
+       <tr >
+         <td>Sidespeople</td>
+         <td>{{roster[week-2].sidesperson1}}</td>
        </tr>
+
+       <tr >
+         <td></td>
+         <td>{{roster[week-2].sidesperson2}}</td>
+       </tr>
+
+      <tr >
+         <td>Readers</td>
+         <td>{{roster[week-2].reader1}}</td>
+       </tr>
+
+       <tr >
+         <td></td>
+         <td>{{roster[week-2].reader2}}</td>
+       </tr>
+
+       <tr >
+         <td>Intercessor</td>
+         <td>{{roster[week-2].intercessor}}</td>
+       </tr>
+
+       <tr >
+         <td>Senior Server</td>
+         <td>{{roster[week-2].senSer}}</td>
+       </tr>
+
+       <tr >
+         <td>Crucifer</td>
+         <td>{{roster[week-2].crucifer}}</td>
+       </tr>
+
+       <tr >
+         <td>Acolytes</td>
+         <td>{{roster[week-2].acolyte1}}</td>
+       </tr>
+
+       <tr >
+         <td></td>
+         <td>{{roster[week-2].acolyte2}}</td>
+       </tr>
+
+       <tr >
+         <td>Chalice</td>
+         <td>{{roster[week-2].chalice}}</td>
+       </tr>
+
+       <tr >
+         <td></td>
+         <td>{{roster[week-2].senSer}}</td>
+       </tr>
+
+       <tr >
+         <td>Thurifer</td>
+         <td>{{roster[week-2].thurifer}}</td>
+       </tr>
+
       </table>
 
 </div>
 
-<h1>temp</h1>
 <button routerLink="/aRoster">aRoster</button>
 <button routerLink="/aHome">Admin home</button>
