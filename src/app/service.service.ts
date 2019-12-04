@@ -1,5 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+
 
 @Injectable({
    providedIn: 'root'
@@ -79,10 +82,13 @@ export class ServiceService {
     while (usercount < people.length) {
       if (people[usercount].fName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
         this.valid = "pass";
+        console.log(people[usercount],usercount)
+        break;
       }
+     
       usercount++
     } // end while
-    return usercount-1
+    return usercount
     //localStorage.setItem('loginDB', JSON.stringify(loginDB));
   } // end login
 
