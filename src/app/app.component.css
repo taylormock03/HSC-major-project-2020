@@ -11,6 +11,7 @@
     left: 0;
     right: 0;
     padding-bottom:6px;
+    background-color:rgb(173,11,0);
 }
 
 
@@ -21,6 +22,7 @@
     left: 0;
     right: 0;
     height:40px;
+    background-color: rgb(173,11,0);
 }
 
 .footerMenu{
@@ -47,14 +49,14 @@ height:100vh;
     align-items: center;
     justify-content: center;
     width: 250px;
-    background: rgba(0, 4, 120, 0.5);
+    background: rgba(173,11,0,0.75);
 }
 
 
 /*  SIDE MENU  LITS ITEMS   */
 .mat-list .mat-list-item, .mat-nav-list .mat-list-item, .mat-selection-list .mat-list-item{
     color:#FFF;
-    width: 200px;
+    width: 100%;
 }
 .mat-list-item:hover {
   background-color: darkgray ;
@@ -62,7 +64,7 @@ height:100vh;
 }
 
 .mat-list-item:hover {
-  background-color: darkgray ;
+  background-color: rgb(221,153,51) ;
 }
 
 .mat-list-icon {
