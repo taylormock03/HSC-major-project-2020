@@ -1,9 +1,78 @@
 <h1>Roster</h1>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Sidesperson1">
+        <th mat-header-cell *matHeaderCellDef> Sidesperson </th>
+        <td mat-cell *matCellDef="let element"> {{element.sidesperson1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Sidesperson2">
+        <th mat-header-cell *matHeaderCellDef> Sidesperson </th>
+        <td mat-cell *matCellDef="let element"> {{element.sidesperson2}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Acolyte1">
+        <th mat-header-cell *matHeaderCellDef> Acolyte </th>
+        <td mat-cell *matCellDef="let element"> {{element.acolyte1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Acolyte2">
+        <th mat-header-cell *matHeaderCellDef> Acolyte </th>
+        <td mat-cell *matCellDef="let element"> {{element.acolyte2}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Intercessor">
+        <th mat-header-cell *matHeaderCellDef> Intercessor </th>
+        <td mat-cell *matCellDef="let element"> {{element.intercessor}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SeniorServer">
+        <th mat-header-cell *matHeaderCellDef> Senior Server </th>
+        <td mat-cell *matCellDef="let element"> {{element.senSer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Crucifer">
+        <th mat-header-cell *matHeaderCellDef> Crucifer </th>
+        <td mat-cell *matCellDef="let element"> {{element.crucifer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Chalice1">
+        <th mat-header-cell *matHeaderCellDef> Chalice bearer </th>
+        <td mat-cell *matCellDef="let element"> {{element.chalice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Chalice2">
+        <th mat-header-cell *matHeaderCellDef> Chalice bearer </th>
+        <td mat-cell *matCellDef="let element"> {{element.senSer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Thurifer">
+        <th mat-header-cell *matHeaderCellDef> Thurifer </th>
+        <td mat-cell *matCellDef="let element"> {{element.thurifer}} </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+
+
 
 <table>
 <tr>
   <th>Date</th>
-  <th>Sides person1</th>
+  <th>Sidesperson1</th>
   <th>Sides person 2</th>
   <th>Reader 1</th>
   <th>Reader 2</th>
@@ -12,7 +81,6 @@
   <th>Crucifer</th>
   <th>Acolyte 1</th>
   <th>Acolyte 2</th>
-  <th>Intercessor</th>
   <th>Chalice</th>
   <th>Chalice</th>
   <th>Thurifer</th>
@@ -35,4 +103,3 @@
 </tr>
 
 </table>
-<br
