@@ -1,0 +1,10 @@
+.loginbody{
+  text-align:center;
+}
+.container{
+  display: flex;
+  justify-content: center;
+}
+mat-card{
+  width: 75%;
+}
