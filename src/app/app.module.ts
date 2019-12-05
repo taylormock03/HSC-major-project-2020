@@ -133,5 +133,7 @@ const appRoutes: Routes = [
     entryComponents: [DeleteDialogueComponent]
 })
 export class AppModule {
+  MatPaginatorModule
 }
+
 

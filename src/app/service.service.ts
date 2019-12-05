@@ -252,6 +252,10 @@ export class ServiceService {
  let roster = JSON.parse(localStorage.getItem('Roster'));
     roster.push(Roster);
     localStorage.setItem('roster', JSON.stringify(Roster));
+
+  //alert user
+
+  alert("Roster Successfully created")
   //end function
   }
 

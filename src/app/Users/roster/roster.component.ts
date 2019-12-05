@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ServiceService } from '../.././service.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator,MatTableDataSource,MatSort} from '@angular/material';
 
 export interface RosterElement {
   date: string;
@@ -34,12 +33,10 @@ export class RosterComponent implements OnInit {
   dataSource = new MatTableDataSource<RosterElement>(this.ELEMENT_DATA)
   roster:any;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+ @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-        
         this.dataSource.paginator = this.paginator;
-        console.log(this.dataSource);
   }
 
 }
