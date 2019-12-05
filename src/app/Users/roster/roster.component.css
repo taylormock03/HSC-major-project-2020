@@ -4,13 +4,14 @@ h1{
 div{
   display:flex;
   margin:auto;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap:wrap;
   width:90%;
 
 }
 mat-form-field{
-  margin-left:5%
+  margin-left:5%;
+  width:25%;
 }
 table{
   width:80%;
