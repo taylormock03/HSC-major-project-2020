@@ -1,5 +1,10 @@
 <h1>Roster</h1>
 <div class="mat-elevation-z8">
+
+  <mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
     <table mat-table [dataSource]="dataSource" >
 
       <ng-container matColumnDef="date">
@@ -7,7 +12,7 @@
         <td mat-cell *matCellDef="let element"> {{element.date}} </td>
       </ng-container>
 
-     <!-- <ng-container matColumnDef="Sidesperson1">
+     <ng-container matColumnDef="Sidesperson1">
         <th mat-header-cell *matHeaderCellDef> Sidesperson </th>
         <td mat-cell *matCellDef="let element"> {{element.sidesperson1}} </td>
       </ng-container>
@@ -15,7 +20,7 @@
       <ng-container matColumnDef="Sidesperson2">
         <th mat-header-cell *matHeaderCellDef> Sidesperson </th>
         <td mat-cell *matCellDef="let element"> {{element.sidesperson2}} </td>
-      </ng-container> -->
+      </ng-container> 
 
       <ng-container matColumnDef="Acolyte1">
         <th mat-header-cell *matHeaderCellDef> Acolyte </th>
@@ -27,7 +32,7 @@
         <td mat-cell *matCellDef="let element"> {{element.acolyte2}} </td>
       </ng-container>
 
-     <!-- <ng-container matColumnDef="Intercessor">
+      <ng-container matColumnDef="Intercessor">
         <th mat-header-cell *matHeaderCellDef> Intercessor </th>
         <td mat-cell *matCellDef="let element"> {{element.intercessor}} </td>
       </ng-container>
@@ -57,7 +62,6 @@
         <td mat-cell *matCellDef="let element"> {{element.thurifer}} </td>
       </ng-container>
 
--->
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

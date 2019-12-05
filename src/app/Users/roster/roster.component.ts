@@ -35,6 +35,10 @@ export class RosterComponent implements OnInit {
 
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
   ngOnInit() {
         this.dataSource.paginator = this.paginator;
   }
