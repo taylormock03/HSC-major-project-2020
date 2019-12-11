@@ -1,3 +1,128 @@
-<p>
-admin-edit works!
-</p>
+<mat-card>
+  <div class="editbody">
+     <h1>Current Details</h1>
+  <mat-divider></mat-divider>
+  <br>
+
+
+	<div class="col">
+      <strong>First Name:</strong> {{people[id].fName}}<br>
+      <strong>Last Name:</strong> {{people[id].lName}} <br>
+     <strong>Contact details:</strong> {{people[id].cDetails}} <br>
+      <strong>Password:</strong> {{people[id].password}} <br>
+      <strong>Crucifer:</strong> {{people[id].crucifer}} <br>
+      <strong>Senior Server:</strong> {{people[id].senSer}} <br> 
+      <strong>Acolyte:</strong> {{people[id].acolyte}} <br>
+      <strong>Welcomer:</strong> {{people[id].welcomer}} <br>
+      <strong>Reader:</strong> {{people[id].reader}} <br>
+      <strong>Intercessor:</strong> {{people[id].intercessor}} <br>
+      <strong>Approved:</strong> {{people[id].approved}} <br>
+
+
+ <p class="edit-submitted-message">
+		{{message}} <br>
+		<button mat-raised-button [routerLink]="['/aList']" [ngClass]="[bntStyle]" color="primary">Back</button>
+       </p>
+	<div class="col">
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+		<h1>EDIT</h1>
+<form [formGroup]="peopleForm" (ngSubmit)="submitEdit()">
+    <div fxFlex fxLayout="row wrap" fxLayoutGap="20px">
+
+				<mat-form-field>
+					<input matInput placeholder="First name" formControlName="fName">
+				</mat-form-field>
+
+				<mat-form-field>
+					<input matInput placeholder="Last name" formControlName="lName">
+				</mat-form-field>
+
+        <mat-form-field>
+					<input matInput placeholder="Contact details (Phone number or email)" formControlName="cDetails">
+				</mat-form-field>
+
+        <mat-form-field>
+					<input matInput placeholder="Account Password" formControlName="password">
+				</mat-form-field>
+
+        <mat-radio-group formControlName="crucifer" >
+          Can you serve as Crucifer?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="senSer" >
+          Can you serve as Senior Server?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="acolyte" >
+          Can you serve as Acolyte?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="sidesperson" >
+          Can you serve as Sidesperson?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="welcomer" >
+          Can you serve as Welcomer?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="chalice" >
+          Can you serve as Chalice bearer?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="reader" >
+          Can you serve as Reader?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="intercessor" >
+          Can you serve as Intercessor?<br>
+          <mat-radio-button value="True">Yes</mat-radio-button>
+          <mat-radio-button value="False">No</mat-radio-button>
+        </mat-radio-group>
+
+			
+
+			</div>
+
+      <div>
+      <button class="green" type="submit" mat-raised-button>Submit</button>
+        <button class="red"  mat-raised-button (click) = openDialog(id)>Delete account</button>
+      </div>
+
+</form>
+	
+	</div>
+
+</div>
+<br>
+  </div>
+  <br>
+</mat-card>
+<br><br><br><br><br><br>
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

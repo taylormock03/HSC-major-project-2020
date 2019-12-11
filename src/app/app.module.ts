@@ -69,7 +69,7 @@ const appRoutes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'aList', component: AdminComponent},
     {path: 'aLogin', component: AdminLoginComponent},
-    {path: 'aEdit', component: AdminEditComponent},
+    {path: 'aEdit/:id', component: AdminEditComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'roster', component: RosterComponent},
     {path: 'uEdit/:id', component: UserEditComponent},
