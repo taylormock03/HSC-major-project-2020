@@ -10,6 +10,7 @@
       <strong>Last Name:</strong> {{people[id].lName}} <br>
      <strong>Contact details:</strong> {{people[id].cDetails}} <br>
       <strong>Password:</strong> {{people[id].password}} <br>
+      <strong>Days working:</strong> {{people[id].freq}} <br>
       <strong>Crucifer:</strong> {{people[id].crucifer}} <br>
       <strong>Senior Server:</strong> {{people[id].senSer}} <br> 
       <strong>Acolyte:</strong> {{people[id].acolyte}} <br>
@@ -47,52 +48,62 @@
 					<input matInput placeholder="Account Password" formControlName="password">
 				</mat-form-field>
 
+        <mat-form-field>
+					<input matInput placeholder="Days working" formControlName="freq">
+				</mat-form-field>
+
         <mat-radio-group formControlName="crucifer" >
           Can you serve as Crucifer?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="senSer" >
           Can you serve as Senior Server?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="acolyte" >
           Can you serve as Acolyte?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="sidesperson" >
           Can you serve as Sidesperson?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="welcomer" >
           Can you serve as Welcomer?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="chalice" >
           Can you serve as Chalice bearer?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="reader" >
           Can you serve as Reader?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-radio-group formControlName="intercessor" >
           Can you serve as Intercessor?<br>
-          <mat-radio-button value="True">Yes</mat-radio-button>
-          <mat-radio-button value="False">No</mat-radio-button>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group formControlName="approved" >
+          Approved?<br>
+          <mat-radio-button value=true>Yes</mat-radio-button>
+          <mat-radio-button value=false>No</mat-radio-button>
         </mat-radio-group>
 
 			

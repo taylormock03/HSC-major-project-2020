@@ -79,7 +79,9 @@ export class AdminEditComponent implements OnInit, OnDestroy {
         chalice:[this.people[id].chalice],
         reader:[this.people[id].reader],
         intercessor:[this.people[id].intercessor],
-        approved:[this.people[id].approved]
+        approved:[this.people[id].approved],
+        freq:[this.people[id].freq],
+
       }
     );
 
