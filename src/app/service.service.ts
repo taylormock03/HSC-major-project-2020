@@ -189,6 +189,8 @@ export class ServiceService {
           times_rostered[uName]++
         }
       }//end crucifer
+      console.log("crucifer")
+            break
 
       //start acolyte1
        while (acolyte1Month.length<sundays.length){
@@ -208,7 +210,7 @@ export class ServiceService {
           times_rostered[uName]++
         }
       }//end acolyte1
-      
+      console.log("acolyte1")
       //start acolyte2
        while (acolyte2Month.length<sundays.length){
         let person=Math.floor(Math.random() * Math.floor(userNum));
@@ -228,7 +230,7 @@ export class ServiceService {
           times_rostered[uName]++
         }
       }//end acolyte2
-
+      console.log("acolyte1")
 //end monthly roster
 
       month++
@@ -255,7 +257,7 @@ export class ServiceService {
 
   //alert user
 
-  alert("Roster Successfully created")
+  //alert("Roster Successfully created")
   //end function
   }
 

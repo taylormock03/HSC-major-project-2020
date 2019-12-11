@@ -20,7 +20,6 @@ export class AdminRosterComponent implements OnInit {
 
   ngOnInit() {
     this.roster=this.ps.getRoster()
-    console.log(this.roster)
   }
 
   createRoster(){
