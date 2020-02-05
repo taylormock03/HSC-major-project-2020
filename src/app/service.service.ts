@@ -218,7 +218,7 @@ export class ServiceService {
           values[person].approved=="true" && 
           values[person].acolyte=="true" && 
           values[person].freq>times_rostered[uName] && 
-          uName != cruciferMonth[acolyte1Month.length] &&
+          uName != cruciferMonth[acolyte2Month.length] &&
           uName != acolyte1Month[acolyte2Month.length]
         )
         {
@@ -254,7 +254,7 @@ export class ServiceService {
 
   //alert user
 
-  /alert("Roster Successfully created")
+  alert("Roster Successfully created")
   //end function
   }
 
