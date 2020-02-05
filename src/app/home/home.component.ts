@@ -20,7 +20,6 @@ export class HomeComponent  {
 
   ngOnInit(){
     this.roster = this.ps.getRoster()
-    console.log(this.roster)
     this.date=this.getDate();
     this.week=this.getWeekNumber(new Date);
     this.display();

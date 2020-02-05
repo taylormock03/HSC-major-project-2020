@@ -179,8 +179,8 @@ export class ServiceService {
          uName=values[person].fName+" "+ values[person].lName;
 
         if (
-          values[person].approved==true && 
-        values[person].crucifer==true && 
+          values[person].approved=="true" && 
+        values[person].crucifer=="true" && 
         values[person].freq>times_rostered[uName]
         )
         {
@@ -189,15 +189,16 @@ export class ServiceService {
           times_rostered[uName]++
         }
       }//end crucifer
-
+      
+      
       //start acolyte1
        while (acolyte1Month.length<sundays.length){
         let person=Math.floor(Math.random() * Math.floor(userNum));
         uName=values[person].fName+" "+ values[person].lName
 
         if (
-          values[person].approved==true && 
-          values[person].acolyte==true && 
+          values[person].approved=="true" && 
+          values[person].acolyte=="true" && 
           values[person].freq>times_rostered[uName] && 
           uName != cruciferMonth[acolyte1Month.length]
 
@@ -208,17 +209,16 @@ export class ServiceService {
           times_rostered[uName]++
         }
       }//end acolyte1
-      
       //start acolyte2
        while (acolyte2Month.length<sundays.length){
         let person=Math.floor(Math.random() * Math.floor(userNum));
         uName=values[person].fName+" "+ values[person].lName;
 
         if (
-          values[person].approved==true && 
-          values[person].acolyte==true && 
+          values[person].approved=="true" && 
+          values[person].acolyte=="true" && 
           values[person].freq>times_rostered[uName] && 
-          uName != cruciferMonth[acolyte1Month.length] &&
+          uName != cruciferMonth[acolyte2Month.length] &&
           uName != acolyte1Month[acolyte2Month.length]
         )
         {
@@ -228,7 +228,6 @@ export class ServiceService {
           times_rostered[uName]++
         }
       }//end acolyte2
-
 //end monthly roster
 
       month++
@@ -252,6 +251,10 @@ export class ServiceService {
  let roster = JSON.parse(localStorage.getItem('Roster'));
     roster.push(Roster);
     localStorage.setItem('roster', JSON.stringify(Roster));
+
+  //alert user
+
+  alert("Roster Successfully created")
   //end function
   }
 
