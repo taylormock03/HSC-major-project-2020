@@ -26,6 +26,12 @@
             <input matInput formControlName="freq">
           </mat-form-field>
 
+          <div>
+          When will you be unable to be rostered?
+          <ejs-daterangepicker formControlName="date" name="date" id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker>
+          </div><br>
+
+
            <br>
           <strong>Please check the roles you wish to do</strong>
           <mat-checkbox formControlName="crucifer" value=true> Crucifer</mat-checkbox>
@@ -35,7 +41,7 @@
           <mat-checkbox formControlName="welcomer" value=true> Welcomer</mat-checkbox>
           <mat-checkbox formControlName="chalice" value=true> Chalice bearer</mat-checkbox>
           <mat-checkbox formControlName="reader" value=true> Reader</mat-checkbox>
-          <mat-checkbox formControlName="intercessor" value=true> intercessor</mat-checkbox>
+          <mat-checkbox formControlName="intercessor" value=true> Intercessor</mat-checkbox>
 
 
         <div fxFlex class="register-but">

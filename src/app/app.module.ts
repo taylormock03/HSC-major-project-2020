@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
+import { DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 import {
     MatAutocompleteModule,
@@ -86,6 +87,7 @@ const appRoutes: Routes = [
 // MODULES
 @NgModule({
     imports: [
+        DateRangePickerModule, 
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
