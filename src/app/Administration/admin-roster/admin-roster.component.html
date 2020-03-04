@@ -10,7 +10,20 @@
       </table>
       
       <br>
-<button mat-raised-button (click) = createRoster()>Create Roster</button>
+      <form [formGroup]="peopleForm" (ngSubmit)="submit()">
+      <div fxFlex fxLayout="row wrap" fxLayoutGap="20px">
+
+      <div>
+          Roster date range
+          <ejs-daterangepicker formControlName="date" name="date" id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker>
+          </div><br>
+      </div>
+      <div fxFlex class="register-but">
+          <button   mat-raised-button color="primary">Create Roster</button>
+        </div>
+      </form>
+      {{ peopleForm.value | json }} 
+
 <br><br><br>
 
 

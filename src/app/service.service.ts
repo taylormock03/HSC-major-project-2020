@@ -118,9 +118,10 @@ export class ServiceService {
   //Roster scripts
 
   
-  createRoster(values):void{
+  createRoster(Users, test):void{
+    console.log(test)
     var userNum=0;
-  for(let x of values){
+  for(let x of Users){
     userNum++
   }
   var crucifer=[]
@@ -150,7 +151,7 @@ export class ServiceService {
       var times_rostered ={}
       
       //track user rosters
-      for(let x of values){
+      for(let x of Users){
         var uName=x.fName+" "+ x.lName
           times_rostered[uName]=0
         }
@@ -176,12 +177,12 @@ export class ServiceService {
       while (cruciferMonth.length<sundays.length){
         
         var person=Math.floor(Math.random() * Math.floor(userNum));
-         uName=values[person].fName+" "+ values[person].lName;
+         uName=Users[person].fName+" "+ Users[person].lName;
 
         if (
-          values[person].approved=="true" && 
-        values[person].crucifer=="true" && 
-        values[person].freq>times_rostered[uName]
+          Users[person].approved=="true" && 
+        Users[person].crucifer=="true" && 
+        Users[person].freq>times_rostered[uName]
         )
         {
           cruciferMonth.push(uName)
@@ -194,12 +195,12 @@ export class ServiceService {
       //start acolyte1
        while (acolyte1Month.length<sundays.length){
         let person=Math.floor(Math.random() * Math.floor(userNum));
-        uName=values[person].fName+" "+ values[person].lName
+        uName=Users[person].fName+" "+ Users[person].lName
 
         if (
-          values[person].approved=="true" && 
-          values[person].acolyte=="true" && 
-          values[person].freq>times_rostered[uName] && 
+          Users[person].approved=="true" && 
+          Users[person].acolyte=="true" && 
+          Users[person].freq>times_rostered[uName] && 
           uName != cruciferMonth[acolyte1Month.length]
 
         )
@@ -212,19 +213,19 @@ export class ServiceService {
       //start acolyte2
        while (acolyte2Month.length<sundays.length){
         let person=Math.floor(Math.random() * Math.floor(userNum));
-        uName=values[person].fName+" "+ values[person].lName;
+        uName=Users[person].fName+" "+ Users[person].lName;
 
         if (
-          values[person].approved=="true" && 
-          values[person].acolyte=="true" && 
-          values[person].freq>times_rostered[uName] && 
+          Users[person].approved=="true" && 
+          Users[person].acolyte=="true" && 
+          Users[person].freq>times_rostered[uName] && 
           uName != cruciferMonth[acolyte2Month.length] &&
           uName != acolyte1Month[acolyte2Month.length]
         )
         {
 
-          acolyte2Month.push(values[person].fName+ " " + values[person].lName)
-          acolyte2.push(values[person].fName+ " " + values[person].lName)
+          acolyte2Month.push(Users[person].fName+ " " + Users[person].lName)
+          acolyte2.push(Users[person].fName+ " " + Users[person].lName)
           times_rostered[uName]++
         }
       }//end acolyte2
