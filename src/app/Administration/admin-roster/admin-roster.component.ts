@@ -10,19 +10,26 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from "@angu
   styleUrls: ['./admin-roster.component.css']
 })
 export class AdminRosterComponent implements OnInit {
+  peopleForm: FormGroup;
+
 
   constructor(
       private ps: ServiceService, 
-
+      private fb: FormBuilder,
   ) { }
 
   roster:any;
 
   ngOnInit() {
     this.roster=this.ps.getRoster()
+    this.peopleForm = this.fb.group(
+      {
+        date:[null]          
+      }
+    );
   }
-
-  createRoster(){
-    this.ps.createRoster(this.ps.getPeople())
+  submit(): void {  
+    this.ps.createRoster(this.ps.getPeople(), this.peopleForm.value.date)
   }
+  
 }
