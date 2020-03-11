@@ -18,6 +18,11 @@
           <ejs-daterangepicker formControlName="date" name="date" id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker>
           </div><br>
       </div>
+      
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+         <div class="example-box" *ngFor="let job of Jobs.value; let i=index" cdkDrag>{{job}}</div>
+      </div>
+
       <div fxFlex class="register-but">
           <button   mat-raised-button color="primary">Create Roster</button>
         </div>

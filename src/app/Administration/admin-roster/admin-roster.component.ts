@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { ServiceService } from '../.././service.service';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-admin-roster',
@@ -18,18 +19,29 @@ export class AdminRosterComponent implements OnInit {
       private fb: FormBuilder,
   ) { }
 
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(Jobs, event.previousIndex, event.currentIndex);
+  }
+
   roster:any;
 
   ngOnInit() {
     this.roster=this.ps.getRoster()
     this.peopleForm = this.fb.group(
       {
-        date:[null]          
+        date:[null],
+        jobs:this.fb.array(["Crucifer","Acolyte","Senior Server"])       
       }
+    
     );
+    
   }
+  
   submit(): void {  
     this.ps.createRoster(this.ps.getPeople(), this.peopleForm.value.date)
   }
+  get Jobs() {
+      return this.peopleForm.get('jobs') as FormArray;
+    }
   
 }
