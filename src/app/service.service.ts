@@ -63,14 +63,18 @@ export class ServiceService {
 
   login(loginValues): void {
     this.valid = "false";
+    console.log(loginValues)
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
     while (usercount < people.length) {
-      if (people[usercount].fName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
+
+      console.log(people[usercount].fName + " " + people[usercount].lName, people[usercount].password)
+      if (people[usercount].fName + " " + people[usercount].fName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
         this.valid = "pass";
       }
       usercount++
     } // end while
+    console.log(this.valid)
     return this.valid
     //localStorage.setItem('loginDB', JSON.stringify(loginDB));
   } // end login
@@ -80,9 +84,9 @@ export class ServiceService {
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
     while (usercount < people.length) {
-      if (people[usercount].fName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
+      
+      if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
         this.valid = "pass";
-        console.log(people[usercount],usercount)
         break;
       }
      
