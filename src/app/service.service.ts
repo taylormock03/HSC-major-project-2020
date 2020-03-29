@@ -97,8 +97,9 @@ export class ServiceService {
   } // end login
 
   editPerson(person, id): void {
+    console.log(person)
     let people = JSON.parse(localStorage.getItem('people'));
-    people[id] = person;
+    people[id] = person; 
     localStorage.setItem('people', JSON.stringify(people));
   }
 
@@ -184,8 +185,8 @@ export class ServiceService {
          uName=Users[person].fName+" "+ Users[person].lName;
 
         if (
-          Users[person].approved=="true" && 
-        Users[person].crucifer=="true" && 
+          Users[person].approved==true && 
+        Users[person].crucifer==true && 
         Users[person].freq>times_rostered[uName]
         )
         {
@@ -193,8 +194,9 @@ export class ServiceService {
           crucifer.push(uName)
           times_rostered[uName]++
         }
+      console.log(cruciferMonth)
       }//end crucifer
-      
+
       
       //start acolyte1
        while (acolyte1Month.length<sundays.length){
@@ -202,8 +204,8 @@ export class ServiceService {
         uName=Users[person].fName+" "+ Users[person].lName
 
         if (
-          Users[person].approved=="true" && 
-          Users[person].acolyte=="true" && 
+          Users[person].approved==true && 
+          Users[person].acolyte==true && 
           Users[person].freq>times_rostered[uName] && 
           uName != cruciferMonth[acolyte1Month.length]
 
@@ -220,8 +222,8 @@ export class ServiceService {
         uName=Users[person].fName+" "+ Users[person].lName;
 
         if (
-          Users[person].approved=="true" && 
-          Users[person].acolyte=="true" && 
+          Users[person].approved==true && 
+          Users[person].acolyte==true && 
           Users[person].freq>times_rostered[uName] && 
           uName != cruciferMonth[acolyte2Month.length] &&
           uName != acolyte1Month[acolyte2Month.length]
