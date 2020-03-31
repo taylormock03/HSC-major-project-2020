@@ -121,153 +121,84 @@ export class ServiceService {
 
 
   //Roster scripts
-
-  
-  createRoster(Users, test):void{
-    console.log(test)
-    var userNum=0;
-  for(let x of Users){
-    userNum++
-  }
-  var crucifer=[]
-  var senior=[]
-  var acolyte1=[]
-  var acolyte2=[]
-  var intercessor=[]
-  var reader1=[]
-  var reader2=[]
-  var FullYear=[]
-
-  //Roster each Month
-  var year=new Date().getFullYear()
-  var month=0
-  var months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-
-  
-//create new arrays for month
-    while (month<12){
-      var cruciferMonth=[]
-      var seniorMonth=[]
-      var acolyte1Month=[]
-      var acolyte2Month=[]
-      var intercessorMonth=[]
-      var reader1Month=[]
-      var reader2Month=[]
-      var times_rostered ={}
-      
-      //track user rosters
-      for(let x of Users){
-        var uName=x.fName+" "+ x.lName
-          times_rostered[uName]=0
-        }
-
-
-      var sundays = [];
-      for (var i = 0; i <= new Date(year, month, 0).getDate(); i++) 
-      {    
-          var date = new Date(year, month, i);
-
-          if (date.getDay() == 0 && months[date.getMonth()]==months[month])
-          {
-              //sundays.push(Date.parse(date))
-            sundays.push(date.getDate() + "-" + months[date.getMonth()] + "-" + date.getFullYear());    
-          }
-      };
-
-       for(let x of sundays){
-    FullYear.push(x)
-  }
-      //create each month roster.
-      //start crucifer
-      while (cruciferMonth.length<sundays.length){
-        
-        var person=Math.floor(Math.random() * Math.floor(userNum));
-         uName=Users[person].fName+" "+ Users[person].lName;
-
-        if (
-          Users[person].approved==true && 
-        Users[person].crucifer==true && 
-        Users[person].freq>times_rostered[uName]
-        )
-        {
-          cruciferMonth.push(uName)
-          crucifer.push(uName)
-          times_rostered[uName]++
-        }
-      console.log(cruciferMonth)
-      }//end crucifer
-
-      
-      //start acolyte1
-       while (acolyte1Month.length<sundays.length){
-        let person=Math.floor(Math.random() * Math.floor(userNum));
-        uName=Users[person].fName+" "+ Users[person].lName
-
-        if (
-          Users[person].approved==true && 
-          Users[person].acolyte==true && 
-          Users[person].freq>times_rostered[uName] && 
-          uName != cruciferMonth[acolyte1Month.length]
-
-        )
-        {
-          acolyte1Month.push(uName)
-          acolyte1.push(uName)
-          times_rostered[uName]++
-        }
-      }//end acolyte1
-      //start acolyte2
-       while (acolyte2Month.length<sundays.length){
-        let person=Math.floor(Math.random() * Math.floor(userNum));
-        uName=Users[person].fName+" "+ Users[person].lName;
-
-        if (
-          Users[person].approved==true && 
-          Users[person].acolyte==true && 
-          Users[person].freq>times_rostered[uName] && 
-          uName != cruciferMonth[acolyte2Month.length] &&
-          uName != acolyte1Month[acolyte2Month.length]
-        )
-        {
-
-          acolyte2Month.push(Users[person].fName+ " " + Users[person].lName)
-          acolyte2.push(Users[person].fName+ " " + Users[person].lName)
-          times_rostered[uName]++
-        }
-      }//end acolyte2
-//end monthly roster
-
-      month++
+ getDaysBetweenDates(start, end, dayName) {
+    var result = [];
+    var days = {sun:1,mon:2,tue:3,wed:4,thu:5,fri:6,sat:0};
+    var day = days[dayName.toLowerCase().substr(0,3)];
+    // Copy start date
+    var current = new Date(start);
+    // Shift to next of required days
+    current.setDate(current.getDate() + (day - current.getDay() + 7) % 7);
+    // While less than end date, add dates to result array
+    while (current <= end) {
+      result.push(new Date(+current));
+      current.setDate(current.getDate() + 7);
     }
-  //create an array of objects representing each week. Each object will contain a specific week's rosters
-  var Roster=[]
-  var index=0;
-  for(let x of FullYear){
-    Roster.push({
-      date:x,
-      crucifer: crucifer[index],
-      acolyte1:acolyte1[index],
-      acolyte2:acolyte2[index]
-
-  })
-    index++
-  }
+    return result;  
+}
   
- //save roster in DB
+  createRoster(Users, date):void{
+    let users = Users;
+    console.log(users)
+    let FinalDate = date[1];
+    let FirstDate = date[0];
+    var Weeks = this.getDaysBetweenDates(
+              FirstDate,
+              FinalDate,
+              'Sun');
+    var priorities = ["crucifer","acolyte1","acolyte2"]
+    var times_looped =0
 
- let roster = JSON.parse(localStorage.getItem('Roster'));
-    roster.push(Roster);
-    localStorage.setItem('roster', JSON.stringify(Roster));
+    
+    for (let date of Weeks) {
+        var WeekObject = {
+          date:"",
+          crucifer:""
+          }
+        WeekObject.date=date
+        for (let job of priorities){
+          if(times_looped>=100){
+            alert("week " + date + " could not find a job")
+            break;
+          }
+          else{
+            times_looped = 0
+            while (times_looped<100){
+              let person= users[Math.floor(Math.random()*users.length)]
+              //console.log(WeekObject, person, person[job] == true, !(person.fname in WeekObject&& person.lname in WeekObject))
+              if (person[job] == true && !(person.fname in WeekObject&& person.lname in WeekObject)){
+                console.log("found")
+                WeekObject[job]=person.fname + " " + person.lname
+                break
+              }
+              else{
+                times_looped++
+              }
+              }  
+            }
+          }
+          console.log(WeekObject)
+        }
+    }  
 
-  //alert user
+    
+    
+  //save roster in DB
+  /*
+  let roster = JSON.parse(localStorage.getItem('Roster'));
+      roster.push(Roster);
+      localStorage.setItem('roster', JSON.stringify(Roster));
 
-  alert("Roster Successfully created")
-  //end function
-  }
+    //alert user
 
-  getRoster() {
-    let roster = JSON.parse(localStorage.getItem('roster'));
-    return roster;
+    alert("Roster Successfully created")
+    //end function
+    
+    }*/
+
+    getRoster() {
+      let roster = JSON.parse(localStorage.getItem('roster'));
+      return roster;
   }
   //end ServiceService
 }
