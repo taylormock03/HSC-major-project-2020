@@ -149,6 +149,7 @@ export class ServiceService {
     var priorities = ["crucifer","acolyte1","acolyte2"]
     var times_looped =0
 
+    var roster =[]
     
     for (let date of Weeks) {
         var WeekObject = {
@@ -160,8 +161,8 @@ export class ServiceService {
             times_looped = 0
             while (times_looped<100){
               let person= users[Math.floor(Math.random()*users.length)]
-              //console.log(WeekObject, person, person[job] == true, !(person.fname in WeekObject&& person.lname in WeekObject))
-              if (person[job] == true && !(person.fName in WeekObject&& person.lName in WeekObject)){
+
+              if (person[job] == true && this.checkWeek(person.fName + " " + person.lName,WeekObject)){
                 WeekObject[job]=person.fName + " " + person.lName
                 break
               }
@@ -174,29 +175,40 @@ export class ServiceService {
               }
               } 
             }
-             console.log(WeekObject)
+             roster.push(WeekObject)
           }
-         
-        }  
+         console.log(roster)
+          
 
     
     
   //save roster in DB
-  /*
-  let roster = JSON.parse(localStorage.getItem('Roster'));
-      roster.push(Roster);
-      localStorage.setItem('roster', JSON.stringify(Roster));
+  
+  let Roster = JSON.parse(localStorage.getItem('roster'));
+      Roster.push(roster);
+      localStorage.setItem('roster', JSON.stringify(roster));
 
     //alert user
 
     alert("Roster Successfully created")
     //end function
     
-    }*/
+    }
 
     getRoster() {
       let roster = JSON.parse(localStorage.getItem('roster'));
       return roster;
+  }
+
+  checkWeek(user, week){
+    let valid=true
+    for(let x in week){
+
+      if (user == week[x]){
+        valid=false;
+      }
+    }
+    return valid;
   }
   //end ServiceService
 }
