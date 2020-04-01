@@ -123,6 +123,7 @@ export class ServiceService {
   //Roster scripts
  getDaysBetweenDates(start, end, dayName) {
     var result = [];
+    var finalResult = [];
     var days = {sun:1,mon:2,tue:3,wed:4,thu:5,fri:6,sat:0};
     var day = days[dayName.toLowerCase().substr(0,3)];
     // Copy start date
@@ -134,7 +135,14 @@ export class ServiceService {
       result.push(new Date(+current));
       current.setDate(current.getDate() + 7);
     }
-    return result;  
+    console.log(typeof result[0], result[0])
+    for (let x of result){
+      finalResult.push(Date.parse(x))
+
+    }
+    console.log(result)
+    console.log(finalResult)
+    return finalResult;  
 }
   
   createRoster(Users, date):void{
@@ -153,10 +161,8 @@ export class ServiceService {
     
     for (let date of Weeks) {
         var WeekObject = {
-          date:"",
-
           }
-        WeekObject.date=date
+        WeekObject["date"]=new Date(date).toUTCString()
         for (let job of priorities){
             times_looped = 0
             while (times_looped<100){
