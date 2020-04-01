@@ -153,33 +153,31 @@ export class ServiceService {
     for (let date of Weeks) {
         var WeekObject = {
           date:"",
-          crucifer:""
+
           }
         WeekObject.date=date
         for (let job of priorities){
-          if(times_looped>=100){
-            alert("week " + date + " could not find a job")
-            break;
-          }
-          else{
             times_looped = 0
             while (times_looped<100){
               let person= users[Math.floor(Math.random()*users.length)]
               //console.log(WeekObject, person, person[job] == true, !(person.fname in WeekObject&& person.lname in WeekObject))
-              if (person[job] == true && !(person.fname in WeekObject&& person.lname in WeekObject)){
-                console.log("found")
-                WeekObject[job]=person.fname + " " + person.lname
+              if (person[job] == true && !(person.fName in WeekObject&& person.lName in WeekObject)){
+                WeekObject[job]=person.fName + " " + person.lName
                 break
               }
               else{
                 times_looped++
+                if(times_looped>=100){
+                  alert("week " + date + " could not find a job")
+                  break;
+                }
               }
-              }  
+              } 
             }
+             console.log(WeekObject)
           }
-          console.log(WeekObject)
-        }
-    }  
+         
+        }  
 
     
     
