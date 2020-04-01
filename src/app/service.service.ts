@@ -163,6 +163,7 @@ export class ServiceService {
         var WeekObject = {
           }
         WeekObject["date"]=new Date(date).toUTCString()
+        WeekObject["backEndDate"]=date
         for (let job of priorities){
             times_looped = 0
             while (times_looped<100){
