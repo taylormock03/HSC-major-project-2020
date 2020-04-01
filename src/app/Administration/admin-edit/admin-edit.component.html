@@ -63,7 +63,11 @@
           <mat-checkbox formControlName="reader" value=true> Reader</mat-checkbox>
           <mat-checkbox formControlName="intercessor" value=true> Intercessor</mat-checkbox>
           <mat-checkbox formControlName="approved" value=true> approved</mat-checkbox>
-			
+
+          <div>
+          When will you be unable to be rostered?
+          <ejs-daterangepicker formControlName="date" name="date" id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker>
+          </div><br>
 
 			</div>
 

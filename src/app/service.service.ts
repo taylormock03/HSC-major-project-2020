@@ -161,8 +161,13 @@ export class ServiceService {
             times_looped = 0
             while (times_looped<100){
               let person= users[Math.floor(Math.random()*users.length)]
-
-              if (person[job] == true && this.checkWeek(person.fName + " " + person.lName,WeekObject)){
+              //console.log(person,this.checkdate(person,WeekObject))
+              if (
+                person[job] == true && 
+                this.checkWeek(person.fName + " " + person.lName,WeekObject)
+                && this.checkdate(person,WeekObject)
+                
+                ){
                 WeekObject[job]=person.fName + " " + person.lName
                 break
               }
@@ -210,5 +215,23 @@ export class ServiceService {
     }
     return valid;
   }
+
+  checkdate(user, week){
+  try{
+   var fDate,lDate,cDate;
+    fDate = Date.parse(user.date[0]);
+    lDate = Date.parse(user.date[1]);
+    cDate = Date.parse(week.date);
+
+  if((cDate <= lDate && cDate >= fDate)) {
+        return false;
+    }
+    return true;
+  }
+  catch{
+    return true
+  }
+  }
+
   //end ServiceService
 }
