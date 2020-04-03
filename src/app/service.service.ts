@@ -190,10 +190,27 @@ export class ServiceService {
              roster.push(WeekObject)
           }
          console.log(roster)
-          
 
-    
-    
+  
+//get existing Roster
+  let existingRoster=this.getRoster()
+  let index=0
+  for (let oldvalue of existingRoster){
+    for (let newvalue of roster){
+      if (oldvalue.backEndDate==newvalue.backEndDate){
+        console.log(oldvalue.date,newvalue.date)
+        existingRoster.splice(index,1)
+        
+      }
+    }
+    index++
+  }
+
+  roster = roster.concat(existingRoster)
+
+  //sortroster
+  roster= this.SortRoster(roster)
+  
   //save roster in DB
   
   let Roster = JSON.parse(localStorage.getItem('roster'));
@@ -238,6 +255,24 @@ export class ServiceService {
   catch{
     return true
   }
+  }
+
+  SortRoster(roster){
+    let index = 0
+    let temp=0
+    let sorted=false
+    while (sorted==false){
+      sorted=true
+      for (let week of roster){
+        if(roster[index].backEndDate>roster[index+1].backEndDate){
+          temp=roster[index]
+          roster[index+1]=roster[index]
+          roster[index+1]=temp
+          sorted =false
+        }
+      }
+    }
+    return roster
   }
 
   //end ServiceService
