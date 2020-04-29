@@ -191,7 +191,11 @@ export class ServiceService {
           }
          console.log(roster)
 
-  
+/*
+commented out because it doesn't work
+It should allow the new roster to not completely overwrite the existing roster.
+
+
 //get existing Roster
   let existingRoster=this.getRoster()
   let index=0
@@ -210,7 +214,9 @@ export class ServiceService {
 
   //sortroster
   roster= this.SortRoster(roster)
-  
+
+*/
+
   //save roster in DB
   
   let Roster = JSON.parse(localStorage.getItem('roster'));
