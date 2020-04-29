@@ -154,7 +154,7 @@ export class ServiceService {
               FirstDate,
               FinalDate,
               'Sun');
-    var priorities = ["crucifer","acolyte1","acolyte2"]
+    var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","sidesperson"]
     var times_looped =0
 
     var roster =[]
@@ -181,7 +181,7 @@ export class ServiceService {
               else{
                 times_looped++
                 if(times_looped>=100){
-                  alert("week " + date + " could not find a job")
+                  //alert("week " + date + " could not find a job")
                   break;
                 }
               }
@@ -226,6 +226,7 @@ It should allow the new roster to not completely overwrite the existing roster.
     //alert user
 
     alert("Roster Successfully created")
+    
     //end function
     
     }

@@ -1,70 +1,65 @@
 
 
 <h1>St Peter's Anglican Church Cremorne</h1>
-<div class="box">
-     <h2>This week's <b id="week"></b> rosters are</h2>
+<div class="box" id="error">
+     <h2>This week: <b>{{roster[week].date}}</b> roster is</h2>
      <table border="1">
        <th>Role</th>
        <th> Person </th>
 
        <tr >
          <td>Sidespeople</td>
-         <td>{{roster[week-2].sidesperson1}}</td>
+         <td>{{roster[week].sidesperson1}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].sidesperson2}}</td>
+         <td>{{roster[week].sidesperson2}}</td>
        </tr>
 
       <tr >
          <td>Readers</td>
-         <td>{{roster[week-2].reader1}}</td>
+         <td>{{roster[week].reader1}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].reader2}}</td>
+         <td>{{roster[week].reader2}}</td>
        </tr>
 
        <tr >
          <td>Intercessor</td>
-         <td>{{roster[week-2].intercessor}}</td>
+         <td>{{roster[week].intercessor}}</td>
        </tr>
 
        <tr >
          <td>Senior Server</td>
-         <td>{{roster[week-2].senSer}}</td>
+         <td>{{roster[week].senSer}}</td>
        </tr>
 
        <tr >
          <td>Crucifer</td>
-         <td>{{roster[week-2].crucifer}}</td>
+         <td>{{roster[week].crucifer}}</td>
        </tr>
 
        <tr >
          <td>Acolytes</td>
-         <td>{{roster[week-2].acolyte1}}</td>
+         <td>{{roster[week].acolyte1}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].acolyte2}}</td>
+         <td>{{roster[week].acolyte2}}</td>
        </tr>
 
        <tr >
          <td>Chalice</td>
-         <td>{{roster[week-2].chalice}}</td>
+         <td>{{roster[week].chalice}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].senSer}}</td>
-       </tr>
-
-       <tr >
-         <td>Thurifer</td>
-         <td>{{roster[week-2].thurifer}}</td>
+         <td>{{roster[week].senSer}}</td>
        </tr>
 
       </table>
