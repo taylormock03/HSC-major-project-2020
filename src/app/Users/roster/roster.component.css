@@ -7,6 +7,8 @@ div{
   flex-direction: column;
   flex-wrap:wrap;
   width:90%;
+  overflow-x: auto;
+  overflow-y : hidden;
 
 }
 mat-form-field{
@@ -14,6 +16,10 @@ mat-form-field{
   width:25%;
 }
 table{
-  width:80%;
+  width:100%;
+  text-align: center;
   margin:auto;
+}
+td{
+  border:solid lightgray 1px;
 }
