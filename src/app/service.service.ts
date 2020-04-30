@@ -154,7 +154,7 @@ export class ServiceService {
               FirstDate,
               FinalDate,
               'Sun');
-    var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","sidesperson"]
+    var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","reader2","sidesperson","sidesperson2"]
     var times_looped =0
 
     var roster =[]
