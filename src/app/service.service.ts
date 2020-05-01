@@ -135,13 +135,11 @@ export class ServiceService {
       result.push(new Date(+current));
       current.setDate(current.getDate() + 7);
     }
-    console.log(typeof result[0], result[0])
     for (let x of result){
       finalResult.push(Date.parse(x))
 
     }
-    console.log(result)
-    console.log(finalResult)
+
     return finalResult;  
 }
   
@@ -159,11 +157,26 @@ export class ServiceService {
 
     var roster =[]
     
+    var times_rostered={}
+
+    var previous_month=-1
+
     for (let date of Weeks) {
+        //create the week object that stores a week's roster
         var WeekObject = {
           }
         WeekObject["date"]=new Date(date).toUTCString()
         WeekObject["backEndDate"]=date
+
+        //calculate which month is being rostered
+        let month = new Date(date).getUTCMonth()
+
+        if (month > previous_month){
+            for (let x of users){
+                times_rostered[x.fName+x.lName]=0
+              }
+        }       
+
         for (let job of priorities){
             times_looped = 0
             while (times_looped<100){
@@ -173,9 +186,10 @@ export class ServiceService {
                 person[job] == true && 
                 this.checkWeek(person.fName + " " + person.lName,WeekObject)
                 && this.checkdate(person,WeekObject)
-                
+                && parseInt(person.freq)>times_rostered[person.fName+person.lName]
                 ){
                 WeekObject[job]=person.fName + " " + person.lName
+                times_rostered[person.fName+person.lName]+=1
                 break
               }
               else{
@@ -188,34 +202,10 @@ export class ServiceService {
               } 
             }
              roster.push(WeekObject)
+             console.log(times_rostered)
+             previous_month=month
           }
-         console.log(roster)
-
-/*
-commented out because it doesn't work
-It should allow the new roster to not completely overwrite the existing roster.
-
-
-//get existing Roster
-  let existingRoster=this.getRoster()
-  let index=0
-  for (let oldvalue of existingRoster){
-    for (let newvalue of roster){
-      if (oldvalue.backEndDate==newvalue.backEndDate){
-        console.log(oldvalue.date,newvalue.date)
-        existingRoster.splice(index,1)
-        
-      }
-    }
-    index++
-  }
-
-  roster = roster.concat(existingRoster)
-
-  //sortroster
-  roster= this.SortRoster(roster)
-
-*/
+         //console.log(roster)
 
   //save roster in DB
   
@@ -264,22 +254,10 @@ It should allow the new roster to not completely overwrite the existing roster.
   }
   }
 
-  SortRoster(roster){
-    let index = 0
-    let temp=0
-    let sorted=false
-    while (sorted==false){
-      sorted=true
-      for (let week of roster){
-        if(roster[index].backEndDate>roster[index+1].backEndDate){
-          temp=roster[index]
-          roster[index+1]=roster[index]
-          roster[index+1]=temp
-          sorted =false
-        }
-      }
-    }
-    return roster
+  resetCount(Users){
+    var dict={}
+    
+    return dict;
   }
 
   //end ServiceService
