@@ -19,6 +19,7 @@ export class ServiceService {
 
 
   constructor(private fb: FormBuilder) {
+    //checks if the people and roster objects exist in storage
     if (localStorage.people == null ) {
         localStorage.setItem('people', JSON.stringify(this.people));
     }
@@ -28,6 +29,7 @@ export class ServiceService {
    }
     //user scripts
     checkAdd(addValues){
+      //validates the values entered by new users
       this.valid = "pass";
       if (typeof addValues.fName === 'undefined' || addValues.fName == null || addValues.fName == "") {
         this.valid = "frnameFail";
@@ -35,39 +37,44 @@ export class ServiceService {
       else if (typeof addValues.lName === 'undefined' || addValues.lName == null || addValues.lName == "") {
         this.valid = "lnameFail";
     }
-      else if (typeof addValues.password === 'undefined' || addValues.lName == null || addValues.lName == "") {
+      else if (typeof addValues.password === 'undefined' || addValues.password == null || addValues.password == "") {
         this.valid = "passFail";
     }
-    else if (typeof addValues.freq === 'undefined' || addValues.lName == null || addValues.lName == "") {
+    else if (typeof addValues.freq === 'undefined' || addValues.freq == null || addValues.lName == "") {
         this.valid = "freqFail";
     }
     return this.valid;
     }
 
     addPerson(person): void {
+      //adds in new user to the "people" object
     let people = JSON.parse(localStorage.getItem('people'));
     people.push(person);
     localStorage.setItem('people', JSON.stringify(people));
   }
 
     getPeople() {
+      //loads all users
     let people = JSON.parse(localStorage.getItem('people'));
     return people;
   }
 
     deletePerson(id): void {
+      //deletes user based on id passed
     let people = this.getPeople()
     people.splice(id, 1);
     localStorage.setItem('people', JSON.stringify(people));
   }
 
   login(loginValues): void {
+    //checks that the login values are valid
     this.valid = "false";
     console.log(loginValues)
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
-    while (usercount < people.length) {
 
+    while (usercount < people.length) {
+      
       console.log(people[usercount].fName + " " + people[usercount].lName, people[usercount].password, loginValues.Login_Username)
       if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
         this.valid = "pass";
@@ -80,6 +87,7 @@ export class ServiceService {
   } // end login
 
   loginid(loginValues): number {
+    //finds the id of the person trying to login
     this.valid = "false";
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
@@ -97,6 +105,7 @@ export class ServiceService {
   } // end login
 
   editPerson(person, id): void {
+    //edits the user's data
     console.log(person)
     let people = JSON.parse(localStorage.getItem('people'));
     people[id] = person; 
@@ -105,6 +114,7 @@ export class ServiceService {
 
   //admin scripts
   alogin(loginValues): void {
+    //checks that the user logging in is using correct credentials AND has admin priviliges i.e (people[usercount.level>=1])
     this.valid = "false";
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
@@ -122,6 +132,7 @@ export class ServiceService {
 
   //Roster scripts
  getDaysBetweenDates(start, end, dayName) {
+   //checks how many days are between two given dates. It takes all the sundays, and passes them as an array back to the main roster program
     var result = [];
     var finalResult = [];
     var days = {sun:1,mon:2,tue:3,wed:4,thu:5,fri:6,sat:0};
@@ -152,17 +163,18 @@ export class ServiceService {
               FirstDate,
               FinalDate,
               'Sun');
+
+    //this is the order in which the jobs will be rostered
     var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","reader2","sidesperson","sidesperson2"]
-    var times_looped =0
-
-    var roster =[]
     
+    var times_looped =0
+    var roster =[]
     var times_rostered={}
-
     var previous_month=-1
 
+    //cycles between every week in the array "Weeks"
     for (let date of Weeks) {
-        //create the week object that stores a week's roster
+        //create the week object that stores a week's roster. This is reset for every new week
         var WeekObject = {
           }
         WeekObject["date"]=new Date(date).toUTCString()
@@ -170,18 +182,21 @@ export class ServiceService {
 
         //calculate which month is being rostered
         let month = new Date(date).getUTCMonth()
-
+        //if the current month is different than the previous month, the dictionary keeping track of how many times a user has been rostered gets reset
         if (month > previous_month){
             for (let x of users){
                 times_rostered[x.fName+x.lName]=0
               }
         }       
 
+        //cycles through every job in the priorities array in order that they were written 
         for (let job of priorities){
             times_looped = 0
+            //this is a failsafe incase no users can be rostered
             while (times_looped<100){
+              //chooses a random user
               let person= users[Math.floor(Math.random()*users.length)]
-              //console.log(person,this.checkdate(person,WeekObject))
+              //validates that the user can work the job and has not been rostered too many times
               if (
                 person[job] == true && 
                 this.checkWeek(person.fName + " " + person.lName,WeekObject)
@@ -190,22 +205,26 @@ export class ServiceService {
                 ){
                 WeekObject[job]=person.fName + " " + person.lName
                 times_rostered[person.fName+person.lName]+=1
+                times_looped=0
                 break
               }
               else{
+                //if they are an invalid user, times_looped increases and a new user is picked randomly
                 times_looped++
-                if(times_looped>=100){
-                  //alert("week " + date + " could not find a job")
+                
+              }
+              //if no user is found the failsafe activates and launches an alert that a job couldn't be found. It then moves on to the next job
+              if(times_looped>=100){
+                  alert("week " + date + " could not find a job")
                   break;
                 }
-              }
               } 
             }
+            //sends the week's roster to the full roster
              roster.push(WeekObject)
-             console.log(times_rostered)
+             
              previous_month=month
           }
-         //console.log(roster)
 
   //save roster in DB
   
@@ -222,11 +241,13 @@ export class ServiceService {
     }
 
     getRoster() {
+      //loads roster
       let roster = JSON.parse(localStorage.getItem('roster'));
       return roster;
   }
 
   checkWeek(user, week){
+    //checks that the user has not already been roster in a given week. It is called during the main validation
     let valid=true
     for(let x in week){
 
@@ -238,12 +259,15 @@ export class ServiceService {
   }
 
   checkdate(user, week){
+    //checks that the user has not requested to not be times_rostered
+    //if the user has not entered time off, this try statement will fail, thereby allowing them to be rostered
   try{
    var fDate,lDate,cDate;
     fDate = Date.parse(user.date[0]);
     lDate = Date.parse(user.date[1]);
     cDate = Date.parse(week.date);
 
+  //checks that the date range requested off does not contain the current week's date
   if((cDate <= lDate && cDate >= fDate)) {
         return false;
     }
@@ -252,12 +276,6 @@ export class ServiceService {
   catch{
     return true
   }
-  }
-
-  resetCount(Users){
-    var dict={}
-    
-    return dict;
   }
 
   //end ServiceService
