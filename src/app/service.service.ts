@@ -214,7 +214,7 @@ export class ServiceService {
                 times_looped++
                 //if no user is found the failsafe activates and launches an alert that a job couldn't be found. It then moves on to the next job
                 if(times_looped>=100){
-                  alert("week " + date + " could not find someone for: " + job)
+                  //alert("week " + date + " could not find someone for: " + job)
                   console.log("fail")
                   break;
                 }
