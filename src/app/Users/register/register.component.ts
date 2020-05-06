@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         reader:[false],
         reader2:[false],
         intercessor:[false],
-        approved:[true],
+        approved:[false],
         freq:[null],
         level:[0],
         date:[null],          
