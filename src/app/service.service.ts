@@ -223,7 +223,6 @@ export class ServiceService {
               
               
               } 
-              console.log(job,WeekObject)
             }
             //sends the week's roster to the full roster
              roster.push(WeekObject)

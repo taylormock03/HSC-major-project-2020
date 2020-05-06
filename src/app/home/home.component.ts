@@ -25,8 +25,13 @@ export class HomeComponent  {
 
     this.week=this.getWeek(this.date);
     console.log(this.week)
-  
-
+    try{
+      this.roster=this.roster[this.week]
+      }
+    catch{
+      this.roster={"error":"true"}
+      }
+    console.log(this.roster)
   }
   
 getWeek(date){
