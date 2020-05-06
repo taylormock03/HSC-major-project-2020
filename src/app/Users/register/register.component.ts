@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         intercessor:[false],
         approved:[true],
         freq:[null],
-        level:[1],
+        level:[0],
         date:[null],          
       }
     );

@@ -22,6 +22,16 @@ export class ServiceService {
     //checks if the people and roster objects exist in storage
     if (localStorage.people == null ) {
         localStorage.setItem('people', JSON.stringify(this.people));
+        let new_person={
+          "fName":"admin",
+          "lName":"admin",
+          "password":"admin",
+          "level":1
+        }
+      let  new_db=[new_person]
+      localStorage.setItem('people', JSON.stringify(new_db));
+
+        
     }
     if (localStorage.Roster == null) {
       localStorage.setItem('Roster', JSON.stringify(this.Roster));
@@ -119,8 +129,15 @@ export class ServiceService {
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
     while (usercount < people.length) {
-      if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password && people[usercount].level>=1) {
-        this.valid = "pass";
+      if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
+        
+        if( people[usercount].level>=1){
+          this.valid = "pass";
+        }
+        else{
+          this.valid="admin"
+
+        }
       }
       usercount++
     } // end while
