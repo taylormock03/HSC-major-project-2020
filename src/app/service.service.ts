@@ -191,6 +191,7 @@ export class ServiceService {
 
         //cycles through every job in the priorities array in order that they were written 
         for (let job of priorities){
+            
             times_looped = 0
             //this is a failsafe incase no users can be rostered
             while (times_looped<100){
@@ -211,14 +212,18 @@ export class ServiceService {
               else{
                 //if they are an invalid user, times_looped increases and a new user is picked randomly
                 times_looped++
-                
-              }
-              //if no user is found the failsafe activates and launches an alert that a job couldn't be found. It then moves on to the next job
-              if(times_looped>=100){
-                  alert("week " + date + " could not find a job")
+                //if no user is found the failsafe activates and launches an alert that a job couldn't be found. It then moves on to the next job
+                if(times_looped>=100){
+                  alert("week " + date + " could not find someone for: " + job)
+                  console.log("fail")
                   break;
                 }
+                
+              }
+              
+              
               } 
+              console.log(job,WeekObject)
             }
             //sends the week's roster to the full roster
              roster.push(WeekObject)
@@ -229,7 +234,7 @@ export class ServiceService {
   //save roster in DB
   
   let Roster = JSON.parse(localStorage.getItem('roster'));
-      Roster.push(roster);
+      Roster=roster;
       localStorage.setItem('roster', JSON.stringify(roster));
 
     //alert user
