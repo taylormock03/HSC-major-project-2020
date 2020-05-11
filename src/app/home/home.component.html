@@ -1,75 +1,67 @@
 
 
 <h1>St Peter's Anglican Church Cremorne</h1>
-<div class="box">
-     <h2>This week's <b id="week"></b> rosters are</h2>
+<div class="box" id="error">
+     <h2>This week: <b>{{roster.date}}</b> roster is</h2>
      <table border="1">
        <th>Role</th>
        <th> Person </th>
 
        <tr >
          <td>Sidespeople</td>
-         <td>{{roster[week-2].sidesperson1}}</td>
+         <td>{{roster.sidesperson}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].sidesperson2}}</td>
+         <td>{{roster.sidesperson2}}</td>
        </tr>
 
       <tr >
          <td>Readers</td>
-         <td>{{roster[week-2].reader1}}</td>
+         <td>{{roster.reader}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].reader2}}</td>
+         <td>{{roster.reader2}}</td>
        </tr>
 
        <tr >
          <td>Intercessor</td>
-         <td>{{roster[week-2].intercessor}}</td>
+         <td>{{roster.intercessor}}</td>
        </tr>
 
        <tr >
          <td>Senior Server</td>
-         <td>{{roster[week-2].senSer}}</td>
+         <td>{{roster.senSer}}</td>
        </tr>
 
        <tr >
          <td>Crucifer</td>
-         <td>{{roster[week-2].crucifer}}</td>
+         <td>{{roster.crucifer}}</td>
        </tr>
 
        <tr >
          <td>Acolytes</td>
-         <td>{{roster[week-2].acolyte1}}</td>
+         <td>{{roster.acolyte1}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].acolyte2}}</td>
+         <td>{{roster.acolyte2}}</td>
        </tr>
 
        <tr >
          <td>Chalice</td>
-         <td>{{roster[week-2].chalice}}</td>
+         <td>{{roster.chalice}}</td>
        </tr>
 
        <tr >
          <td></td>
-         <td>{{roster[week-2].senSer}}</td>
-       </tr>
-
-       <tr >
-         <td>Thurifer</td>
-         <td>{{roster[week-2].thurifer}}</td>
+         <td>{{roster.senSer}}</td>
        </tr>
 
       </table>
 
 </div>
-
-<button routerLink="/aRoster">aRoster</button>
-<button routerLink="/aHome">Admin home</button>

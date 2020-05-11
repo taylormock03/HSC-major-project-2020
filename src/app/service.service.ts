@@ -19,8 +19,19 @@ export class ServiceService {
 
 
   constructor(private fb: FormBuilder) {
+    //checks if the people and roster objects exist in storage
     if (localStorage.people == null ) {
         localStorage.setItem('people', JSON.stringify(this.people));
+        let new_person={
+          "fName":"admin",
+          "lName":"admin",
+          "password":"admin",
+          "level":1
+        }
+      let  new_db=[new_person]
+      localStorage.setItem('people', JSON.stringify(new_db));
+
+        
     }
     if (localStorage.Roster == null) {
       localStorage.setItem('Roster', JSON.stringify(this.Roster));
@@ -28,6 +39,7 @@ export class ServiceService {
    }
     //user scripts
     checkAdd(addValues){
+      //validates the values entered by new users
       this.valid = "pass";
       if (typeof addValues.fName === 'undefined' || addValues.fName == null || addValues.fName == "") {
         this.valid = "frnameFail";
@@ -35,39 +47,44 @@ export class ServiceService {
       else if (typeof addValues.lName === 'undefined' || addValues.lName == null || addValues.lName == "") {
         this.valid = "lnameFail";
     }
-      else if (typeof addValues.password === 'undefined' || addValues.lName == null || addValues.lName == "") {
+      else if (typeof addValues.password === 'undefined' || addValues.password == null || addValues.password == "") {
         this.valid = "passFail";
     }
-    else if (typeof addValues.freq === 'undefined' || addValues.lName == null || addValues.lName == "") {
+    else if (typeof addValues.freq === 'undefined' || addValues.freq == null || addValues.lName == "") {
         this.valid = "freqFail";
     }
     return this.valid;
     }
 
     addPerson(person): void {
+      //adds in new user to the "people" object
     let people = JSON.parse(localStorage.getItem('people'));
     people.push(person);
     localStorage.setItem('people', JSON.stringify(people));
   }
 
     getPeople() {
+      //loads all users
     let people = JSON.parse(localStorage.getItem('people'));
     return people;
   }
 
     deletePerson(id): void {
+      //deletes user based on id passed
     let people = this.getPeople()
     people.splice(id, 1);
     localStorage.setItem('people', JSON.stringify(people));
   }
 
   login(loginValues): void {
+    //checks that the login values are valid
     this.valid = "false";
     console.log(loginValues)
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
-    while (usercount < people.length) {
 
+    while (usercount < people.length) {
+      
       console.log(people[usercount].fName + " " + people[usercount].lName, people[usercount].password, loginValues.Login_Username)
       if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
         this.valid = "pass";
@@ -80,6 +97,7 @@ export class ServiceService {
   } // end login
 
   loginid(loginValues): number {
+    //finds the id of the person trying to login
     this.valid = "false";
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
@@ -97,6 +115,7 @@ export class ServiceService {
   } // end login
 
   editPerson(person, id): void {
+    //edits the user's data
     console.log(person)
     let people = JSON.parse(localStorage.getItem('people'));
     people[id] = person; 
@@ -105,12 +124,20 @@ export class ServiceService {
 
   //admin scripts
   alogin(loginValues): void {
+    //checks that the user logging in is using correct credentials AND has admin priviliges i.e (people[usercount.level>=1])
     this.valid = "false";
     let people = JSON.parse(localStorage.getItem('people'));
     var usercount = 0;
     while (usercount < people.length) {
-      if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password && people[usercount].level>=1) {
-        this.valid = "pass";
+      if (people[usercount].fName + " " + people[usercount].lName == loginValues.Login_Username && people[usercount].password == loginValues.Login_Password) {
+        
+        if( people[usercount].level>=1){
+          this.valid = "pass";
+        }
+        else{
+          this.valid="admin"
+
+        }
       }
       usercount++
     } // end while
@@ -121,153 +148,156 @@ export class ServiceService {
 
 
   //Roster scripts
-
-  
-  createRoster(Users, test):void{
-    console.log(test)
-    var userNum=0;
-  for(let x of Users){
-    userNum++
-  }
-  var crucifer=[]
-  var senior=[]
-  var acolyte1=[]
-  var acolyte2=[]
-  var intercessor=[]
-  var reader1=[]
-  var reader2=[]
-  var FullYear=[]
-
-  //Roster each Month
-  var year=new Date().getFullYear()
-  var month=0
-  var months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-
-  
-//create new arrays for month
-    while (month<12){
-      var cruciferMonth=[]
-      var seniorMonth=[]
-      var acolyte1Month=[]
-      var acolyte2Month=[]
-      var intercessorMonth=[]
-      var reader1Month=[]
-      var reader2Month=[]
-      var times_rostered ={}
-      
-      //track user rosters
-      for(let x of Users){
-        var uName=x.fName+" "+ x.lName
-          times_rostered[uName]=0
-        }
-
-
-      var sundays = [];
-      for (var i = 0; i <= new Date(year, month, 0).getDate(); i++) 
-      {    
-          var date = new Date(year, month, i);
-
-          if (date.getDay() == 0 && months[date.getMonth()]==months[month])
-          {
-              //sundays.push(Date.parse(date))
-            sundays.push(date.getDate() + "-" + months[date.getMonth()] + "-" + date.getFullYear());    
-          }
-      };
-
-       for(let x of sundays){
-    FullYear.push(x)
-  }
-      //create each month roster.
-      //start crucifer
-      while (cruciferMonth.length<sundays.length){
-        
-        var person=Math.floor(Math.random() * Math.floor(userNum));
-         uName=Users[person].fName+" "+ Users[person].lName;
-
-        if (
-          Users[person].approved==true && 
-        Users[person].crucifer==true && 
-        Users[person].freq>times_rostered[uName]
-        )
-        {
-          cruciferMonth.push(uName)
-          crucifer.push(uName)
-          times_rostered[uName]++
-        }
-      console.log(cruciferMonth)
-      }//end crucifer
-
-      
-      //start acolyte1
-       while (acolyte1Month.length<sundays.length){
-        let person=Math.floor(Math.random() * Math.floor(userNum));
-        uName=Users[person].fName+" "+ Users[person].lName
-
-        if (
-          Users[person].approved==true && 
-          Users[person].acolyte==true && 
-          Users[person].freq>times_rostered[uName] && 
-          uName != cruciferMonth[acolyte1Month.length]
-
-        )
-        {
-          acolyte1Month.push(uName)
-          acolyte1.push(uName)
-          times_rostered[uName]++
-        }
-      }//end acolyte1
-      //start acolyte2
-       while (acolyte2Month.length<sundays.length){
-        let person=Math.floor(Math.random() * Math.floor(userNum));
-        uName=Users[person].fName+" "+ Users[person].lName;
-
-        if (
-          Users[person].approved==true && 
-          Users[person].acolyte==true && 
-          Users[person].freq>times_rostered[uName] && 
-          uName != cruciferMonth[acolyte2Month.length] &&
-          uName != acolyte1Month[acolyte2Month.length]
-        )
-        {
-
-          acolyte2Month.push(Users[person].fName+ " " + Users[person].lName)
-          acolyte2.push(Users[person].fName+ " " + Users[person].lName)
-          times_rostered[uName]++
-        }
-      }//end acolyte2
-//end monthly roster
-
-      month++
+ getDaysBetweenDates(start, end, dayName) {
+   //checks how many days are between two given dates. It takes all the sundays, and passes them as an array back to the main roster program
+    var result = [];
+    var finalResult = [];
+    var days = {sun:1,mon:2,tue:3,wed:4,thu:5,fri:6,sat:0};
+    var day = days[dayName.toLowerCase().substr(0,3)];
+    // Copy start date
+    var current = new Date(start);
+    // Shift to next of required days
+    current.setDate(current.getDate() + (day - current.getDay() + 7) % 7);
+    // While less than end date, add dates to result array
+    while (current <= end) {
+      result.push(new Date(+current));
+      current.setDate(current.getDate() + 7);
     }
-  //create an array of objects representing each week. Each object will contain a specific week's rosters
-  var Roster=[]
-  var index=0;
-  for(let x of FullYear){
-    Roster.push({
-      date:x,
-      crucifer: crucifer[index],
-      acolyte1:acolyte1[index],
-      acolyte2:acolyte2[index]
+    for (let x of result){
+      finalResult.push(Date.parse(x))
 
-  })
-    index++
-  }
+    }
+
+    return finalResult;  
+}
   
- //save roster in DB
+  createRoster(Users, date):void{
+    let users = Users;
+    console.log(users)
+    let FinalDate = date[1];
+    let FirstDate = date[0];
+    var Weeks = this.getDaysBetweenDates(
+              FirstDate,
+              FinalDate,
+              'Sun');
 
- let roster = JSON.parse(localStorage.getItem('Roster'));
-    roster.push(Roster);
-    localStorage.setItem('roster', JSON.stringify(Roster));
+    //this is the order in which the jobs will be rostered
+    var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","reader2","sidesperson","sidesperson2"]
+    
+    var times_looped =0
+    var roster =[]
+    var times_rostered={}
+    var previous_month=-1
 
-  //alert user
+    //cycles between every week in the array "Weeks"
+    for (let date of Weeks) {
+        //create the week object that stores a week's roster. This is reset for every new week
+        var WeekObject = {
+          }
+        WeekObject["date"]=new Date(date).toUTCString()
+        WeekObject["backEndDate"]=date
 
-  alert("Roster Successfully created")
-  //end function
+        //calculate which month is being rostered
+        let month = new Date(date).getUTCMonth()
+        //if the current month is different than the previous month, the dictionary keeping track of how many times a user has been rostered gets reset
+        if (month > previous_month){
+            for (let x of users){
+                times_rostered[x.fName+x.lName]=0
+              }
+        }       
+
+        //cycles through every job in the priorities array in order that they were written 
+        for (let job of priorities){
+            
+            times_looped = 0
+            //this is a failsafe incase no users can be rostered
+            while (times_looped<100){
+              //chooses a random user
+              let person= users[Math.floor(Math.random()*users.length)]
+              //validates that the user can work the job and has not been rostered too many times
+              if (
+                person[job] == true && 
+                this.checkWeek(person.fName + " " + person.lName,WeekObject)
+                && this.checkdate(person,WeekObject)
+                && parseInt(person.freq)>times_rostered[person.fName+person.lName]
+                ){
+                WeekObject[job]=person.fName + " " + person.lName
+                times_rostered[person.fName+person.lName]+=1
+                times_looped=0
+                break
+              }
+              else{
+                //if they are an invalid user, times_looped increases and a new user is picked randomly
+                times_looped++
+                //if no user is found the failsafe activates and launches an alert that a job couldn't be found. It then moves on to the next job
+                if(times_looped>=100){
+                  //alert("week " + date + " could not find someone for: " + job)
+                  console.log("fail")
+                  break;
+                }
+                
+              }
+              
+              
+              } 
+            }
+            //sends the week's roster to the full roster
+             roster.push(WeekObject)
+             
+             previous_month=month
+          }
+
+  //save roster in DB
+  
+  let Roster = JSON.parse(localStorage.getItem('roster'));
+      Roster=roster;
+      localStorage.setItem('roster', JSON.stringify(roster));
+
+    //alert user
+
+    alert("Roster Successfully created")
+    
+    //end function
+    
+    }
+
+    getRoster() {
+      //loads roster
+      let roster = JSON.parse(localStorage.getItem('roster'));
+      return roster;
   }
 
-  getRoster() {
-    let roster = JSON.parse(localStorage.getItem('roster'));
-    return roster;
+  checkWeek(user, week){
+    //checks that the user has not already been roster in a given week. It is called during the main validation
+    let valid=true
+    for(let x in week){
+
+      if (user == week[x]){
+        valid=false;
+      }
+    }
+    return valid;
   }
+
+  checkdate(user, week){
+    //checks that the user has not requested to not be times_rostered
+    //if the user has not entered time off, this try statement will fail, thereby allowing them to be rostered
+  try{
+   var fDate,lDate,cDate;
+    fDate = Date.parse(user.date[0]);
+    lDate = Date.parse(user.date[1]);
+    cDate = Date.parse(week.date);
+
+  //checks that the date range requested off does not contain the current week's date
+  if((cDate <= lDate && cDate >= fDate)) {
+        return false;
+    }
+    return true;
+  }
+  catch{
+    return true
+  }
+  }
+
   //end ServiceService
 }

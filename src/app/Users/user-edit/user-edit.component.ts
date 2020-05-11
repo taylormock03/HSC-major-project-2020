@@ -75,13 +75,15 @@ export class UserEditComponent implements OnInit , OnDestroy {
         password: [this.people[id].password],
         crucifer:[this.people[id].crucifer],
         senSer:[this.people[id].senSer],
-        acolyte:[this.people[id].acolyte],
+        acolyte1:[this.people[id].acolyte1],
+        acolyte2:[this.people[id].acolyte2],
         sidesperson:[this.people[id].sidesperson],
         welcomer:[this.people[id].welcomer],
         chalice:[this.people[id].chalice],
         reader:[this.people[id].reader],
         intercessor:[this.people[id].intercessor],
-        approved:[this.people[id].approved]
+        approved:[this.people[id].approved],
+        date:[this.people[id].date]
       }
     );
 

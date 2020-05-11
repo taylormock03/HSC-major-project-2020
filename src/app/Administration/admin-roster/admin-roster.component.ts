@@ -30,6 +30,7 @@ export class AdminRosterComponent implements OnInit {
   }
   submit(): void {  
     this.ps.createRoster(this.ps.getPeople(), this.peopleForm.value.date)
+    this.roster=this.ps.getRoster()
   }
   
 }

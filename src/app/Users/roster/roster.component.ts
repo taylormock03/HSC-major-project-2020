@@ -29,7 +29,7 @@ export class RosterComponent implements OnInit {
   constructor(private ps: ServiceService) { }
 
   ELEMENT_DATA: RosterElement[] = this.ps.getRoster();
-  displayedColumns: string[] = ['date', 'Crucifer', 'Acolyte1', 'Acolyte2'];
+  displayedColumns: string[] = ['date', 'Crucifer', 'Acolyte1', 'Acolyte2',"Sidesperson1","Sidesperson2","Reader1","Reader2","Chalice1", "Thurifer"];
   dataSource = new MatTableDataSource<RosterElement>(this.ELEMENT_DATA)
   roster:any;
 

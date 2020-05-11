@@ -19,39 +19,58 @@ export class HomeComponent  {
   week:any;
 
   ngOnInit(){
+   
     this.roster = this.ps.getRoster()
-    this.date=this.getDate();
-    this.week=this.getWeekNumber(new Date);
-    this.display();
+    this.date=new Date().getTime()
 
-  }
-  getDate(){
-    let curr = new Date 
-    let week = ""
-
-    for (let i = 1; i <= 7; i++) {
-      let first = curr.getDate() - curr.getDay() + i 
-      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
-      week=day;
+    this.week=this.getWeek(this.date);
+    console.log(this.week)
+    try{
+      this.roster=this.roster[this.week]
       }
-    return week;
+    catch{
+      this.roster={"error":"true"}
+      }
+    console.log(this.roster)
+  }
+  
+getWeek(date){
+  //if the roster object does not exist i.e has never been made, this try will fail
+  try{
+    let i=0
+    //current_week is default value that is never achievable because it is negative. If this does not change, the program knows that there are no valid dates. 
+    let current_week= -999
+    for (let x of this.roster){
+      //check if today's date is less than the date of the week being checked
+      if (date < x.backEndDate){
+        if(i>0){
+          //check if today's date is greater than the date of the previous week. if both statements are true, we know that we have picked the right week
+          if(date>this.roster[i-1].backEndDate){
+            current_week=i 
+            }
+        }
+        //this is in case the first week of the roster is the current week. Because there is no prior date to check, we automatically assume that it is correct
+        else{
+          current_week=i
+        }
+        
+      }
+      i++
+    }
+    //checks that the date is valid. 
+    if (current_week>this.roster.length-1 || current_week==-999){
+      document.getElementById("error").innerHTML = "No current rosters have been made. If you think this is an issue, please call - 1900 654 321";
+      return 0
+
+    }
+    return current_week
   }
 
- getWeekNumber(d) {
-    // Copy date so don't modify original
-    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    // Set to nearest Thursday: current date + 4 - current day number
-    // Make Sunday's day number 7
-    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-    // Get first day of year
-    var yearStart = Number(new Date(Date.UTC(d.getUTCFullYear(),0,1)));
-    // Calculate full weeks to nearest Thursday
-    var weekNo = Math.ceil(( ( (d -yearStart) / 86400000) + 1)/7);
-    // Return array of year and week number
-    return weekNo;
-}
-  display(){
-    document.getElementById("week").innerHTML = this.date;
+  catch(err){
+    document.getElementById("error").innerHTML = "No current rosters have been made. If you think this is an issue, please call - 1900 654 321";
+    return 0 
+    console.log("Roster does not exist")
   }
+}
 
   }
