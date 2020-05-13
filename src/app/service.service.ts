@@ -217,6 +217,7 @@ export class ServiceService {
               //validates that the user can work the job and has not been rostered too many times
               if (
                 person[job] == true && 
+                person.approved == true &&
                 this.checkWeek(person.fName + " " + person.lName,WeekObject)
                 && this.checkdate(person,WeekObject)
                 && parseInt(person.freq)>times_rostered[person.fName+person.lName]
