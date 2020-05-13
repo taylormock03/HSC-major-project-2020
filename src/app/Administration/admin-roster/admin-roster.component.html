@@ -25,10 +25,15 @@
       <button mat-button mat-raised-button color="warn" routerLink="/aHome"> Go back  </button>
 
 
-<br><br><br>
+<br><br><br> 
 
+<mat-list-item  *ngFor="let item of roster; let i=index">
+     <mat-divider></mat-divider><br>
+      <strong>Date:</strong>  {{item.date}}<br> 
+        
+      <button mat-button mat-raised-button color="accent" [routerLink]="['/rEdit', i]">edit  </button>
+        <mat-divider ></mat-divider>
+</mat-list-item>
 
-
-
-
+<br><br><br> 
 

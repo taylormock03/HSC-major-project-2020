@@ -61,6 +61,7 @@ import { ServiceService } from './service.service';
 import { DeleteDialogueComponent } from './delete-dialogue/delete-dialogue.component';
 import { AdminHomeComponent } from './Administration/admin-home/admin-home.component';
 import { AdminRosterComponent } from './Administration/admin-roster/admin-roster.component';
+import { RosterEditComponent } from './Administration/roster-edit/roster-edit.component';
 
 
 
@@ -129,7 +130,7 @@ const appRoutes: Routes = [
             //  { enableTracing: true } // <-- debugging purposes only
         )
     ],  // end imports
-    declarations: [AppComponent, HomeComponent, AdminComponent, AdminLoginComponent,AdminEditComponent, RegisterComponent,RosterComponent,UserEditComponent,UserAvailabilitiesComponent, DeleteDialogueComponent, AdminHomeComponent, AdminRosterComponent],
+    declarations: [AppComponent, HomeComponent, AdminComponent, AdminLoginComponent,AdminEditComponent, RegisterComponent,RosterComponent,UserEditComponent,UserAvailabilitiesComponent, DeleteDialogueComponent, AdminHomeComponent, AdminRosterComponent, RosterEditComponent],
     bootstrap: [AppComponent],
     providers: [ServiceService],
     entryComponents: [DeleteDialogueComponent]
