@@ -182,7 +182,7 @@ export class ServiceService {
               'Sun');
 
     //this is the order in which the jobs will be rostered
-    var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","reader2","sidesperson","sidesperson2"]
+    var priorities = ["senSer","crucifer","acolyte1","acolyte2","intercessor","chalice","reader","reader2","sidesperson","sidesperson2","thurifer"]
     
     var times_looped =0
     var roster =[]
@@ -298,6 +298,14 @@ export class ServiceService {
   catch{
     return true
   }
+  }
+
+  editRoster(week, id): void {
+    //edits the user's data
+    console.log(week)
+    let roster = JSON.parse(localStorage.getItem('roster'));
+    roster[id] = week; 
+    localStorage.setItem('roster', JSON.stringify(roster));
   }
 
   //end ServiceService

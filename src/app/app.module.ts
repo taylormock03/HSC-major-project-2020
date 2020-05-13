@@ -75,6 +75,7 @@ const appRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'roster', component: RosterComponent},
     {path: 'uEdit/:id', component: UserEditComponent},
+    {path: 'rEdit/:id', component: RosterEditComponent},
     {path: 'availability', component: UserAvailabilitiesComponent},
     {path: 'aHome', component: AdminHomeComponent},
     {path: 'aRoster', component: AdminRosterComponent},
