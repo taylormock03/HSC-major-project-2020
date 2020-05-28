@@ -48,7 +48,7 @@ export class UserEditComponent implements OnInit , OnDestroy {
   editShowBut: boolean = true;
   bntStyle: string = '';
 
-  submitEdit() {
+  submit() {
     // Grap the edited values from the Form
     const form = this.peopleForm.value;
     // Call the PeopleService Method 'editPerson'
@@ -82,7 +82,7 @@ export class UserEditComponent implements OnInit , OnDestroy {
         chalice:[this.people[id].chalice],
         reader:[this.people[id].reader],
         intercessor:[this.people[id].intercessor],
-        approved:[this.people[id].approved],
+        approved:[false],
         date:[this.people[id].date]
       }
     );
