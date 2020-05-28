@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl, FormGroup, FormControl } from '@angular/forms';
 import { ServiceService } from '../.././service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ps: ServiceService
+    private ps: ServiceService,
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
@@ -68,20 +70,21 @@ export class RegisterComponent implements OnInit {
       this.ps.addPerson(this.peopleForm.value);
       alert("Data added to database" ) ;
       this.peopleForm.reset();
+      //this.router.navigate(['/home']);
 
     }
     if (this.valid == "frnameFail") {
-      this.errorMessage = "Please enter your first name";
+      alert("Please enter your first name" )
     }   
 
     else if (this.valid == "lnameFail") {
-      this.errorMessage = "Please enter your last name";
+      alert("Please enter your last name");
     }        
     else if (this.valid == "passFail") {
-      this.errorMessage = "Please enter a password";
+      alert("Please enter a password");
     }    
     else if (this.valid == "freqFail") {
-      this.errorMessage = "Please enter how many days you wish to work";
+      alert("Please enter how many days you wish to work");
     }
 
   }
