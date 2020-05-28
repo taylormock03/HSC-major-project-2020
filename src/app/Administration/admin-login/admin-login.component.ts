@@ -41,7 +41,7 @@ export class AdminLoginComponent implements OnInit {
         this.route.navigate(['aHome'])
       }
       if (this.valid== "admin"){
-        this.errorMessage = "You do not lack sufficient priviliges to access this page";
+        this.errorMessage = "You lack sufficient priviliges to access this page";
       }
       if (this.valid == "false") {
         this.count = this.count + 1;

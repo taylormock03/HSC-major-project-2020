@@ -83,6 +83,7 @@ export class AdminEditComponent implements OnInit, OnDestroy {
         intercessor:[this.people[id].intercessor],
         approved:[this.people[id].approved],
         freq:[this.people[id].freq],
+        level:[this.people[id].level],
         date:[this.people[id].date]
       }
     );
